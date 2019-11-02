@@ -1,0 +1,21 @@
+.column {
+    position: relative;
+    height: 100vh;
+    width: 20%;
+    min-height: 80vh;
+    float: left;
+    border: 2px solid black;
+}
+
+.column-header {
+    background: teal;
+    height: 20%;
+    width: 100%;
+}
+
+.column-content {
+    background: wheat;
+    height: 80%;
+    width: 100%;
+}
+

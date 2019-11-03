@@ -2,7 +2,7 @@
 import React from 'react';
 import Task from './Task';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTimesCircle } from '@fortawesome/free-solid-svg-icons'
+import { faTimesCircle, faPlusCircle } from '@fortawesome/free-solid-svg-icons'
 import '../assets/Column.css';
 import '../assets/Std.css';
 
@@ -24,12 +24,7 @@ class Column extends React.Component {
                     <Task />
                     <Task />
                     <Task />
-                    <Task />
-                    <Task />
-                    <Task />    
-                    <Task />
-                    <Task />
-                    <Task />
+                    <FontAwesomeIcon className="add-button" icon={faPlusCircle} size="2x"></FontAwesomeIcon>
                 </div>
             </div>
         );

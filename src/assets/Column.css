@@ -3,10 +3,10 @@
     height: 800px;
     width: 400px;
     float: left;
-    margin-left: .5em;
-    margin-right: .5em;
-    overflow-y: scroll;
+    margin-left: .4em;
+    margin-right: .4em;
     flex-shrink: 0;
+    overflow-y: auto;
 }
 
 .column-header {
@@ -32,18 +32,24 @@
     color: #A30006;
 }
 
-
-
 .column-content {
     margin-top: 80px;
     min-height: 720px;
-    height: ;
+    height: auto;
     width: 100%;
-    border-bottom-left-radius: 8px;
-    border-bottom-right-radius: 8px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+    overflow-y: auto;
 }
 
+.add-button {
+    transition: color .2s ease-in-out;
+    cursor: pointer;
+    margin-top: 1em;
+}
+
+.add-button:hover {
+    color: #37D07B;
+}

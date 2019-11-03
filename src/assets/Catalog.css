@@ -1,0 +1,19 @@
+.catalog-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    left: 0;
+    top: 0;
+    margin-left: 5em;
+}
+
+.add-button-col {
+    margin-left: 1em;
+    margin-right: 1em;
+    transition: color .2s ease-in-out;
+    cursor: pointer;
+}
+
+.add-button-col:hover {
+    color: #37D07B;
+}

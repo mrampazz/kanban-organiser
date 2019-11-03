@@ -10,7 +10,7 @@
 }
 
 .column-header {
-    position: fixed;
+    /* position: fixed; */
     height: 80px;
     width: 400px;
     display: flex;
@@ -33,7 +33,7 @@
 }
 
 .column-content {
-    margin-top: 80px;
+    /* margin-top: 80px; */
     min-height: 720px;
     height: auto;
     width: 100%;

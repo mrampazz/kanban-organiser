@@ -5,8 +5,16 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimesCircle, faPlusCircle } from '@fortawesome/free-solid-svg-icons'
 import '../assets/Column.css';
 import '../assets/Std.css';
+import { is } from '@babel/types';
 
 class Column extends React.Component { 
+    constructor(props) {
+        super(props);
+        this.state = {
+            showInput: false
+        }
+    }
+    
     render() {
         let contentClass = ["column-content"];
         if(this.props.id % 2 === 0) {

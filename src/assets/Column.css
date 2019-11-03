@@ -1,21 +1,49 @@
 .column {
     position: relative;
-    height: 100vh;
-    width: 20%;
-    min-height: 80vh;
+    height: 800px;
+    width: 400px;
     float: left;
-    border: 2px solid black;
+    margin-left: .5em;
+    margin-right: .5em;
+    overflow-y: scroll;
+    flex-shrink: 0;
 }
 
 .column-header {
-    background: teal;
-    height: 20%;
-    width: 100%;
+    position: fixed;
+    height: 80px;
+    width: 400px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
+.title {
+    margin-left: 2em;
+}
+
+.button {
+    margin-right: 1.2em;
+    transition: color .2s ease-in-out;
+    cursor: pointer;
+}
+
+.button:hover {
+    color: #A30006;
+}
+
+
+
 .column-content {
-    background: wheat;
-    height: 80%;
+    margin-top: 80px;
+    min-height: 720px;
+    height: ;
     width: 100%;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
 }
 

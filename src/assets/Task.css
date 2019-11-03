@@ -1,0 +1,7 @@
+.task-container {
+    border-radius: 8px;
+    height: 120px;
+    width: 90%;
+    margin-top: 1em;
+    flex-shrink: 0;
+}

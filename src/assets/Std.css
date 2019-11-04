@@ -26,24 +26,46 @@
     background: #73d2de;
 }
 
-.example-enter {
+.colRemove-enter {
     opacity: 0.01;
     width: 0px;
-  }
-  
-  .example-enter.example-enter-active {
+}
+
+.colRemove-enter.colRemove-enter-active {
     opacity: 1;
     width: 400px;
     transition: 700ms;
-  }
-  
-  .example-leave {
+}
+
+.colRemove-leave {
     opacity: 1;
     width: 400px;
-  }
-  
-  .example-leave.example-leave-active {
+}
+
+.colRemove-leave.colRemove-leave-active {
     opacity: 0.01;
     width: 0px;
     transition: 700ms;
-  }
+}
+
+.taskRemove-enter {
+    opacity: 0.01;
+    height: 0px;
+}
+
+.taskRemove-enter.taskRemove-enter-active {
+    opacity: 1;
+    height: 120px;
+    transition: 700ms;
+}
+
+.taskRemove-leave {
+    opacity: 1;
+    height: 120px;
+}
+
+.taskRemove-leave.taskRemove-leave-active {
+    opacity: 0.01;
+    height: 0px;
+    transition: 700ms;
+}

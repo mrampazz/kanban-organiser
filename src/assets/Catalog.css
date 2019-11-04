@@ -22,3 +22,14 @@
 .add-button-col:hover {
     color: #37D07B;
 }
+
+.empty-state {
+    text-align: center;
+    width: 100%;
+    margin-top: 3em;
+    color: white;
+}
+
+.add-button-col-empty {
+    margin-top: 2em;
+}

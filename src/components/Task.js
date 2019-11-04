@@ -15,6 +15,8 @@ class Task extends React.Component {
             <div className="task-container task-bg">
                 <h3>{this.props.title}</h3>
                 <FontAwesomeIcon icon={faTimesCircle} size="2x" onClick={() => this.props.onDelete(this.props.id)}/>
+                <FontAwesomeIcon icon={faPlusCircle} size="2x" onClick={() => this.props.onMove(this.props.colID+1, this.props.id)}/>
+                <a> MOVE ME TO SECOND COLUMN </a>
                 <a>Show content</a>
             </div>
         );

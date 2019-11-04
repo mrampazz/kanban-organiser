@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimesCircle, faPlusCircle, faWrench, faCheck } from '@fortawesome/free-solid-svg-icons'
 import '../assets/Column.css';
 import '../assets/Std.css';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 class Column extends React.Component { 
     constructor(props) {
@@ -16,7 +17,7 @@ class Column extends React.Component {
     }
 
     filterArray = taskId => {
-        const objects = this.state.tasks.filter(item => item.refId === taskId);
+        const objects = this.state.tasks.filter(item => item.colID === taskId);
         return objects;
     }
 
@@ -24,10 +25,10 @@ class Column extends React.Component {
         const objects = this.state.tasks;
 
         if(objects.length == 0) {
-            objects.push({refId: this.props.id, id: 1, title: "asd"});
+            objects.push({colID: this.props.id, id: 1, title: "asd"});
         } else {
             const obj = objects[objects.length-1];
-            objects.push({refId: this.props.id, id: obj.id+1, title: "asd"});
+            objects.push({colID: this.props.id, id: obj.id+1, title: "asd"});
         }
 
         this.setState({tasks: objects});
@@ -52,13 +53,19 @@ class Column extends React.Component {
         e.preventDefault();
     }
 
+    handleMove = (colnum, taskId) => {
+
+    }
+
     render() { 
         const filteredItems = this.filterArray(this.props.id).map(item => (
             <Task 
                 key = {item.id}
                 id = {item.id}
+                colID = {this.props.id}
                 title = {item.title}
                 onDelete={this.handleDeleteTask}
+                onMove={this.handleMove}
             />
         ))
            
@@ -84,7 +91,15 @@ class Column extends React.Component {
                         <FontAwesomeIcon className="button" icon={faTimesCircle} size="2x" onClick={() => this.props.onDelete(this.props.id)} />
                     </div>
                     <div className={contentClass.join(' ')}>
+                        <ReactCSSTransitionGroup
+                            transitionName="taskRemove"
+                            transitionEnter={true}
+                            transitionLeave={true}
+                            transitionEnterTimeout={500}
+                            transitionLeaveTimeout={500}    
+                        >
                         {filteredItems}
+                        </ReactCSSTransitionGroup>
                         <FontAwesomeIcon className="add-button" icon={faPlusCircle} size="2x" onClick={this.handleCreateTask}></FontAwesomeIcon>
                     </div>
                 </div>
@@ -100,7 +115,15 @@ class Column extends React.Component {
                         <FontAwesomeIcon className="button" icon={faTimesCircle} size="2x" onClick={() => this.props.onDelete(this.props.id)} />
                     </div>
                     <div className={contentClass.join(' ')}>
+                        <ReactCSSTransitionGroup
+                            transitionName="taskRemove"
+                            transitionEnter={true}
+                            transitionLeave={true}
+                            transitionEnterTimeout={500}
+                            transitionLeaveTimeout={500}    
+                        >
                         {filteredItems}
+                        </ReactCSSTransitionGroup>
                         <FontAwesomeIcon className="add-button" icon={faPlusCircle} size="2x" onClick={this.handleCreateTask}></FontAwesomeIcon>
                     </div>
                 </div>

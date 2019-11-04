@@ -14,8 +14,12 @@
     background: #d9dcd6;
 }
 
-.header-bg {
-    background: #769fb6;
+.header-bg-1 {
+    background: #65c9d6;
+}
+
+.header-bg-2 {
+    background: #73d2de;
 }
 
 .task-bg {

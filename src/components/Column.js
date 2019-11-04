@@ -1,7 +1,7 @@
 import React from 'react';
 import Task from './Task';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTimesCircle, faPlusCircle, faWrench } from '@fortawesome/free-solid-svg-icons'
+import { faTimesCircle, faPlusCircle, faWrench, faCheck } from '@fortawesome/free-solid-svg-icons'
 import '../assets/Column.css';
 import '../assets/Std.css';
 
@@ -29,12 +29,12 @@ class Column extends React.Component {
             const obj = objects[objects.length-1];
             objects.push({refId: this.props.id, id: obj.id+1, title: "asd"});
         }
-        
+
         this.setState({tasks: objects});
     }
 
-    handleDeleteTask = taskTitle => {
-        const objects = this.state.tasks.filter(item => item.title !== taskTitle);
+    handleDeleteTask = taskId => {
+        const objects = this.state.tasks.filter(item => item.id !== taskId);
         this.setState({tasks: objects});
     }
 
@@ -52,79 +52,59 @@ class Column extends React.Component {
         e.preventDefault();
     }
 
-
-    renderNormal = () => {
-        const filteredItems = this.filterArray(this.props.id).map(item => (
-            <Task 
-                key = {item.id}
-                refId = {this.props.id}
-                id = {item.id}
-                title = {item.title}
-                onDelete={this.handleDeleteTask}
-            />
-        ))
-           
-        let contentClass = ["column-content"];
-        if(this.props.id % 2 === 0) {
-            contentClass.push('content-bg1');
-        } else {
-            contentClass.push('content-bg2');
-        }
-        return (
-            <div className="column text-color">
-                <div className="column-header task-bg">
-                    <div className="header-title">
-                        <FontAwesomeIcon className="edit-button" icon={faWrench} onClick={this.handleEditMode}></FontAwesomeIcon>
-                        <h2 className="title">{this.props.txt}</h2>                    
-                    </div>
-                    <FontAwesomeIcon className="button" icon={faTimesCircle} size="2x" onClick={() => this.props.onDelete(this.props.id)} />
-                </div>
-                <div className={contentClass.join(' ')}>
-                    {filteredItems}
-                    <FontAwesomeIcon className="add-button" icon={faPlusCircle} size="2x" onClick={this.handleCreateTask}></FontAwesomeIcon>
-                </div>
-            </div>
-        );
-    }
-
-    renderInput = () => {
-        const filteredItems = this.filterArray(this.props.id).map(item => (
-            <Task 
-                key = {item.id}
-                id = {item.id}
-                title = {item.title}
-                onDelete={this.handleDeleteTask}
-            />
-        ))
-           
-        let contentClass = ["column-content"];
-        if(this.props.id % 2 === 0) {
-            contentClass.push('content-bg1');
-        } else {
-            contentClass.push('content-bg2');
-        }
-        return (
-            <div className="column text-color">
-                <div className="column-header task-bg">
-                    <form onSubmit={this.handleSubmit} >
-                        <input className="title input-text" placeholder={this.props.txt} onChange={this.handleChange}></input>
-                    </form>
-                    <FontAwesomeIcon className="button" icon={faTimesCircle} size="2x" onClick={() => this.props.onDelete(this.props.id)} />
-                </div>
-                <div className={contentClass.join(' ')}>
-                    {filteredItems}
-                    <FontAwesomeIcon className="add-button" icon={faPlusCircle} size="2x" onClick={this.handleCreateTask}></FontAwesomeIcon>
-                </div>
-            </div>
-        );
-    }
-
-
     render() { 
-        if(this.state.setEditing) {
-            return this.renderInput();
+        const filteredItems = this.filterArray(this.props.id).map(item => (
+            <Task 
+                key = {item.id}
+                id = {item.id}
+                title = {item.title}
+                onDelete={this.handleDeleteTask}
+            />
+        ))
+           
+        var headerClass = ["column-header"];
+        var contentClass = ["column-content"];
+        if(this.props.id % 2 === 0) {
+            contentClass.push('content-bg1');
+            headerClass.push('header-bg-1');
         } else {
-            return this.renderNormal();
+            contentClass.push('content-bg2');
+            headerClass.push('header-bg-2');
+        }
+        if(this.state.setEditing) {
+            return (
+                <div className="column text-color">
+                    <div className={headerClass.join(' ')}>
+                        <div className="header-title">
+                            <form onSubmit={this.handleSubmit} >
+                                <FontAwesomeIcon className="edit-button" icon={faCheck} onClick={this.handleSubmit}></FontAwesomeIcon>
+                                <input className="title input-text" placeholder={this.props.txt} onChange={this.handleChange}></input>
+                            </form>
+                        </div>
+                        <FontAwesomeIcon className="button" icon={faTimesCircle} size="2x" onClick={() => this.props.onDelete(this.props.id)} />
+                    </div>
+                    <div className={contentClass.join(' ')}>
+                        {filteredItems}
+                        <FontAwesomeIcon className="add-button" icon={faPlusCircle} size="2x" onClick={this.handleCreateTask}></FontAwesomeIcon>
+                    </div>
+                </div>
+            );
+        } else {
+            return (
+                <div className="column text-color">
+                    <div className={headerClass.join(' ')}>
+                        <div className="header-title">
+                            <FontAwesomeIcon className="edit-button" icon={faWrench} onClick={this.handleEditMode}></FontAwesomeIcon>
+                            <h2 className="title">{this.props.txt}</h2>                    
+                        </div>
+                        <FontAwesomeIcon className="button" icon={faTimesCircle} size="2x" onClick={() => this.props.onDelete(this.props.id)} />
+                    </div>
+                    <div className={contentClass.join(' ')}>
+                        {filteredItems}
+                        <FontAwesomeIcon className="add-button" icon={faPlusCircle} size="2x" onClick={this.handleCreateTask}></FontAwesomeIcon>
+                    </div>
+                </div>
+            );
         }
     }
 }

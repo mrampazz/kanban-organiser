@@ -29,7 +29,7 @@ class Catalog extends React.Component {
                 objects.push({id: obj.id + 1, txt: "newCol"});
             }
         }
-        
+
         this.setState({cols: objects});
     }
 
@@ -56,10 +56,8 @@ class Catalog extends React.Component {
         items.length = Math.min(items.length, 4);
         return (
             <div className="catalog-container">
-                    <a id="anchor"></a>
-                        {items}
-                    <FontAwesomeIcon className="add-button-col" icon={faPlusCircle} size="2x" onClick={this.handleCreation}/>
-                    <a href="#anchor">Go back</a>
+                {items}
+                <FontAwesomeIcon className="add-button-col" icon={faPlusCircle} size="2x" onClick={this.handleCreation}/>
             </div>
         );
     }

@@ -19,7 +19,8 @@
 }
 
 .title {
-    margin-left: 2em;
+    margin-left: .5em;
+    float: left;
 }
 
 .button {
@@ -60,8 +61,20 @@ h2 {
 }
 
 .input-text {
-    background: transparent;
+    background: red;
     border: none;
     font-size: 24px;
     font-weight: bold;
+    
+}
+
+.edit-button {
+    margin-left: .5em;
+    font-size: 24px;
+}
+
+.header-title {
+    margin-left: 1em;
+    display: flex;
+    align-items: center;
 }

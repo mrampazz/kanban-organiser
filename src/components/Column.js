@@ -1,7 +1,7 @@
 import React from 'react';
 import Task from './Task';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTimesCircle, faPlusCircle } from '@fortawesome/free-solid-svg-icons'
+import { faTimesCircle, faPlusCircle, faWrench } from '@fortawesome/free-solid-svg-icons'
 import '../assets/Column.css';
 import '../assets/Std.css';
 
@@ -72,8 +72,10 @@ class Column extends React.Component {
         return (
             <div className="column text-color">
                 <div className="column-header task-bg">
-                    <h2 className="title">{this.props.txt}</h2>                    
-                    <button onClick={this.handleEditMode} >Edit</button>
+                    <div className="header-title">
+                        <FontAwesomeIcon className="edit-button" icon={faWrench} onClick={this.handleEditMode}></FontAwesomeIcon>
+                        <h2 className="title">{this.props.txt}</h2>                    
+                    </div>
                     <FontAwesomeIcon className="button" icon={faTimesCircle} size="2x" onClick={() => this.props.onDelete(this.props.id)} />
                 </div>
                 <div className={contentClass.join(' ')}>

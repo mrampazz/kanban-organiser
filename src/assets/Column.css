@@ -3,10 +3,8 @@
     height: 800px;
     width: 400px;
     float: left;
-    margin-left: .4em;
-    margin-right: .4em;
     flex-shrink: 0;
-    overflow-y: auto;
+    overflow-y: visible;
 }
 
 .column-header {
@@ -61,11 +59,10 @@ h2 {
 }
 
 .input-text {
-    background: red;
     border: none;
     font-size: 24px;
     font-weight: bold;
-    
+    width: 80%;
 }
 
 .edit-button {

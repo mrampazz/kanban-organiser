@@ -4,18 +4,12 @@ import '../assets/Catalog.css';
 import '../assets/Std.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons'
-import { updateExpression } from '@babel/types';
 
 class Catalog extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            cols: [
-                {id:1, txt: "Stash"},
-                {id:2, txt: "Open"},
-                {id:3, txt: "In progress"},
-                {id:4, txt: "Done"}
-            ]
+            cols: []
         }
     }
 
@@ -26,8 +20,16 @@ class Catalog extends React.Component {
 
     handleCreation = () => {
         const objects = this.state.cols;
-        const obj = objects[objects.length-1];
-        objects.push({id: obj.id + 1, txt: "newCol"});
+        
+        if(objects.length == 0) {
+            objects.push({id: 1, txt: "newCol"});
+        } else {
+            if (this.state.cols.length < 4) {
+                const obj = objects[objects.length-1];
+                objects.push({id: obj.id + 1, txt: "newCol"});
+            }
+        }
+        
         this.setState({cols: objects});
     }
 
@@ -51,12 +53,13 @@ class Catalog extends React.Component {
                 onEdit={this.handleEditCol}
             />
         ));
+        items.length = Math.min(items.length, 4);
         return (
             <div className="catalog-container">
-                <a id="anchor"></a>
-                {items}
-                <FontAwesomeIcon className="add-button-col" icon={faPlusCircle} size="2x" onClick={this.handleCreation}/>
-                <a href="#anchor">Go back</a>
+                    <a id="anchor"></a>
+                        {items}
+                    <FontAwesomeIcon className="add-button-col" icon={faPlusCircle} size="2x" onClick={this.handleCreation}/>
+                    <a href="#anchor">Go back</a>
             </div>
         );
     }

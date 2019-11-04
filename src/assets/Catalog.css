@@ -1,10 +1,15 @@
 .catalog-container {
     display: flex;
-    justify-content: center;
     align-items: center;
+    flex-direction: row;
+    flex-wrap: nowrap;
+
     left: 0;
     top: 0;
+    height: auto;
+    width: auto;
     margin-left: 5em;
+    margin-top: 5em;    
 }
 
 .add-button-col {

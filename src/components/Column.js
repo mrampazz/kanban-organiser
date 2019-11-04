@@ -11,25 +11,25 @@ class Column extends React.Component {
         this.state = {
             editText: '',
             setEditing: false,
-            tasks: [
-               {id: 1, title: "First task"},
-               {id: 1, title: "Second task"},
-               {id: 1, title: "Third task"},
-               {id: 2, title: "Fourth task"},
-               {id: 2, title: "Fifth task"},
-               {id: 3, title: "Sixth task"},
-           ]
+            tasks: []
         }
     }
 
     filterArray = taskId => {
-        const objects = this.state.tasks.filter(item => item.id === taskId);
+        const objects = this.state.tasks.filter(item => item.refId === taskId);
         return objects;
     }
 
     handleCreateTask = () => {
         const objects = this.state.tasks;
-        objects.push({id: this.props.id, title: "asd"});
+
+        if(objects.length == 0) {
+            objects.push({refId: this.props.id, id: 1, title: "asd"});
+        } else {
+            const obj = objects[objects.length-1];
+            objects.push({refId: this.props.id, id: obj.id+1, title: "asd"});
+        }
+        
         this.setState({tasks: objects});
     }
 
@@ -57,6 +57,7 @@ class Column extends React.Component {
         const filteredItems = this.filterArray(this.props.id).map(item => (
             <Task 
                 key = {item.id}
+                refId = {this.props.id}
                 id = {item.id}
                 title = {item.title}
                 onDelete={this.handleDeleteTask}

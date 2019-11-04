@@ -44,6 +44,11 @@
     overflow-y: auto;
 }
 
+h2 {
+    font-size: 24px;
+    font-weight: bold;
+}
+
 .add-button {
     transition: color .2s ease-in-out;
     cursor: pointer;
@@ -52,4 +57,11 @@
 
 .add-button:hover {
     color: #37D07B;
+}
+
+.input-text {
+    background: transparent;
+    border: none;
+    font-size: 24px;
+    font-weight: bold;
 }

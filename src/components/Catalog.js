@@ -4,6 +4,7 @@ import '../assets/Catalog.css';
 import '../assets/Std.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons'
+import { updateExpression } from '@babel/types';
 
 class Catalog extends React.Component {
     constructor(props) {
@@ -29,6 +30,16 @@ class Catalog extends React.Component {
         objects.push({id: obj.id + 1, txt: "newCol"});
         this.setState({cols: objects});
     }
+
+    handleEditCol = (itemId, newText) => {
+        const objects = this.state.cols.slice();
+        for (let i=0; i<objects.length; i++) {
+            if (itemId == i+1) {
+                objects[i].txt = newText;
+            }
+        }
+        this.setState({cols: objects});
+    }
     
     render() {
         const items = this.state.cols.map(item => (
@@ -37,6 +48,7 @@ class Catalog extends React.Component {
                 txt={item.txt} 
                 id={item.id}
                 onDelete={this.handleDelete}
+                onEdit={this.handleEditCol}
             />
         ));
         return (

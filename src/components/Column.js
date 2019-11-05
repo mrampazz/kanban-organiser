@@ -17,26 +17,8 @@ class Column extends React.Component {
     }
 
     filterArray = taskId => {
-        const objects = this.state.tasks.filter(item => item.colID === taskId);
+        const objects = this.props.taskArray.filter(item => item.colID === taskId);
         return objects;
-    }
-
-    handleCreateTask = () => {
-        const objects = this.state.tasks;
-
-        if(objects.length == 0) {
-            objects.push({colID: this.props.id, id: 1, title: "asd"});
-        } else {
-            const obj = objects[objects.length-1];
-            objects.push({colID: this.props.id, id: obj.id+1, title: "asd"});
-        }
-
-        this.setState({tasks: objects});
-    }
-
-    handleDeleteTask = taskId => {
-        const objects = this.state.tasks.filter(item => item.id !== taskId);
-        this.setState({tasks: objects});
     }
 
     handleEditMode = () => {
@@ -53,10 +35,6 @@ class Column extends React.Component {
         e.preventDefault();
     }
 
-    handleMove = (colnum, taskId) => {
-
-    }
-
     render() { 
         const filteredItems = this.filterArray(this.props.id).map(item => (
             <Task 
@@ -64,8 +42,7 @@ class Column extends React.Component {
                 id = {item.id}
                 colID = {this.props.id}
                 title = {item.title}
-                onDelete={this.handleDeleteTask}
-                onMove={this.handleMove}
+                deleteTask = {this.props.onDeleteTask}
             />
         ))
            
@@ -88,7 +65,7 @@ class Column extends React.Component {
                                 <input className="title input-text" placeholder={this.props.txt} onChange={this.handleChange}></input>
                             </form>
                         </div>
-                        <FontAwesomeIcon className="button" icon={faTimesCircle} size="2x" onClick={() => this.props.onDelete(this.props.id)} />
+                        <FontAwesomeIcon className="button" icon={faTimesCircle} size="2x" onClick={() => this.props.onDeleteCol(this.props.id)} />
                     </div>
                     <div className={contentClass.join(' ')}>
                         <ReactCSSTransitionGroup
@@ -100,7 +77,7 @@ class Column extends React.Component {
                         >
                         {filteredItems}
                         </ReactCSSTransitionGroup>
-                        <FontAwesomeIcon className="add-button" icon={faPlusCircle} size="2x" onClick={this.handleCreateTask}></FontAwesomeIcon>
+                        <FontAwesomeIcon className="add-button" icon={faPlusCircle} size="2x" onClick={() => this.props.onCreateTask(this.props.id)}></FontAwesomeIcon>
                     </div>
                 </div>
             );
@@ -112,7 +89,7 @@ class Column extends React.Component {
                             <FontAwesomeIcon className="edit-button" icon={faWrench} onClick={this.handleEditMode}></FontAwesomeIcon>
                             <h2 className="title">{this.props.txt}</h2>                    
                         </div>
-                        <FontAwesomeIcon className="button" icon={faTimesCircle} size="2x" onClick={() => this.props.onDelete(this.props.id)} />
+                        <FontAwesomeIcon className="button" icon={faTimesCircle} size="2x" onClick={() => this.props.onDeleteCol(this.props.id)} />
                     </div>
                     <div className={contentClass.join(' ')}>
                         <ReactCSSTransitionGroup
@@ -124,7 +101,7 @@ class Column extends React.Component {
                         >
                         {filteredItems}
                         </ReactCSSTransitionGroup>
-                        <FontAwesomeIcon className="add-button" icon={faPlusCircle} size="2x" onClick={this.handleCreateTask}></FontAwesomeIcon>
+                        <FontAwesomeIcon className="add-button" icon={faPlusCircle} size="2x" onClick={() => this.props.onCreateTask(this.props.id)}></FontAwesomeIcon>
                     </div>
                 </div>
             );

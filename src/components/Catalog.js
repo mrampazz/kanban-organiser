@@ -11,11 +11,12 @@ class Catalog extends React.Component {
         super(props);
         this.state = {
             emptyArray: true,
-            cols: []
+            cols: [],
+            tasks: []
         }
     }
 
-    handleDelete = itemId => {
+    handleDelCol = itemId => {
         const objects = this.state.cols.filter(item => item.id !== itemId);
         if(objects.length == 0) {
             this.setState({cols: objects, emptyArray: true});
@@ -24,7 +25,7 @@ class Catalog extends React.Component {
         }
     }
 
-    handleCreation = () => {
+    handleCreateCol = () => {
         const objects = this.state.cols;
         if(objects.length == 0) {
             objects.push({id: 1, txt: "newCol"});
@@ -49,6 +50,24 @@ class Catalog extends React.Component {
         }
         this.setState({cols: objects});
     }
+
+    handleDeleteTask = taskId => {
+        const objects = this.state.tasks.filter(item => item.id !== taskId);
+        this.setState({tasks: objects});
+    }
+
+    handleCreateTask = colId => {
+        const objects = this.state.tasks;
+
+        if(objects.length == 0) {
+            objects.push({colID: colId, id: 1, title: "asd"});
+        } else {
+            const obj = objects[objects.length-1];
+            objects.push({colID: colId, id: obj.id+1, title: "asd"});
+        }
+
+        this.setState({tasks: objects});
+    }
     
     render() {
 
@@ -56,7 +75,7 @@ class Catalog extends React.Component {
             return (
                 <div className="empty-state">
                     <h1>Click this button to start creating the columns!</h1>
-                    <FontAwesomeIcon className="add-button-col-empty" icon={faPlusCircle} size="2x" onClick={this.handleCreation}/>
+                    <FontAwesomeIcon className="add-button-col-empty" icon={faPlusCircle} size="2x" onClick={this.handleCreateCol}/>
                 </div>
             );
         } else {
@@ -65,8 +84,11 @@ class Catalog extends React.Component {
                 key={item.id} 
                 txt={item.txt} 
                 id={item.id}
-                onDelete={this.handleDelete}
+                onDeleteCol={this.handleDelCol}
+                onCreateTask={this.handleCreateTask}
+                onDeleteTask={this.handleDeleteTask}
                 onEdit={this.handleEditCol}
+                taskArray = {this.state.tasks}
             />
         ));
         
@@ -81,7 +103,7 @@ class Catalog extends React.Component {
                 >
                 {items}
                 </ReactCSSTransitionGroup>
-                <FontAwesomeIcon className="add-button-col" icon={faPlusCircle} size="2x" onClick={this.handleCreation}/>
+                <FontAwesomeIcon className="add-button-col" icon={faPlusCircle} size="2x" onClick={this.handleCreateCol}/>
             </div>
         );
     }

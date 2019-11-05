@@ -10,12 +10,17 @@ class Task extends React.Component {
         super(props);
     }
 
+    showStuff = () => {
+        console.log(this.props.id);
+        console.log(this.props.colID);
+    }
+
     render() {
         return (
-            <div className="task-container task-bg">
+            <div className="task-container task-bg" onClick={this.showStuff}>
                 <h3>{this.props.title}</h3>
-                <FontAwesomeIcon icon={faTimesCircle} size="2x" onClick={() => this.props.onDelete(this.props.id)}/>
-                <FontAwesomeIcon icon={faPlusCircle} size="2x" onClick={() => this.props.onMove(this.props.colID+1, this.props.id)}/>
+                <FontAwesomeIcon icon={faTimesCircle} size="2x" onClick={() => this.props.deleteTask(this.props.id)}/>
+                <FontAwesomeIcon icon={faPlusCircle} size="2x" />
                 <a> MOVE ME TO SECOND COLUMN </a>
                 <a>Show content</a>
             </div>

@@ -68,6 +68,16 @@ class Catalog extends React.Component {
 
         this.setState({tasks: objects});
     }
+
+    handleMoveTask  = taskId => {
+        const objects = this.state.tasks.slice();
+        for (let i=0; i<objects.length; i++) {
+            if (taskId == i+1) {
+                objects[i].colID = 2;
+            }
+        }
+        this.setState({tasks: objects});
+    }
     
     render() {
 
@@ -88,6 +98,7 @@ class Catalog extends React.Component {
                 onCreateTask={this.handleCreateTask}
                 onDeleteTask={this.handleDeleteTask}
                 onEdit={this.handleEditCol}
+                onMove={this.handleMoveTask}
                 taskArray = {this.state.tasks}
             />
         ));

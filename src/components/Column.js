@@ -43,6 +43,7 @@ class Column extends React.Component {
                 colID = {this.props.id}
                 title = {item.title}
                 deleteTask = {this.props.onDeleteTask}
+                moveTask = {this.props.onMove}
             />
         ))
            

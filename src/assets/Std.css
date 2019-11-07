@@ -55,13 +55,13 @@
 
 .taskRemove-enter.taskRemove-enter-active {
     opacity: 1;
-    height: 120px;
+    height: 80px;
     transition: 700ms;
 }
 
 .taskRemove-leave {
     opacity: 1;
-    height: 120px;
+    height: 80px;
 }
 
 .taskRemove-leave.taskRemove-leave-active {

@@ -11,8 +11,7 @@ class Column extends React.Component {
         super(props);
         this.state = {
             editText: '',
-            setEditing: false,
-            tasks: []
+            setEditing: false
         }
     }
 
@@ -35,6 +34,8 @@ class Column extends React.Component {
         e.preventDefault();
     }
 
+
+
     render() { 
         const filteredItems = this.filterArray(this.props.id).map(item => (
             <Task 
@@ -44,6 +45,7 @@ class Column extends React.Component {
                 title = {item.title}
                 deleteTask = {this.props.onDeleteTask}
                 moveTask = {this.props.onMove}
+                editTask = {this.props.onEditTask}
             />
         ))
            

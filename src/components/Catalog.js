@@ -18,16 +18,18 @@ class Catalog extends React.Component {
 
     handleDelCol = itemId => {
         const objects = this.state.cols.filter(item => item.id !== itemId);
-        if(objects.length == 0) {
-            this.setState({cols: objects, emptyArray: true});
+        const taskItems = this.state.tasks.filter(item => item.colID !== itemId);
+        if(objects.length === 0) {
+            this.setState({tasks: taskItems, cols: objects, emptyArray: true});
+            
         } else {
-            this.setState({cols: objects});
+            this.setState({tasks: taskItems, cols: objects});
         }
     }
-
+    
     handleCreateCol = () => {
         const objects = this.state.cols;
-        if(objects.length == 0) {
+        if(objects.length === 0) {
             objects.push({id: 1, txt: "newCol"});
         } else {
             if (this.state.cols.length < 4) {
@@ -44,22 +46,30 @@ class Catalog extends React.Component {
     handleEditCol = (itemId, newText) => {
         const objects = this.state.cols.slice();
         for (let i=0; i<objects.length; i++) {
-            if (itemId == i+1) {
+            if (itemId === i+1) {
                 objects[i].txt = newText;
             }
         }
         this.setState({cols: objects});
     }
 
-    handleDeleteTask = taskId => {
-        const objects = this.state.tasks.filter(item => item.id !== taskId);
+    handleEditTask = (taskId, newText) => {
+        const objects = this.state.tasks.slice();
+        console.log(objects);
+        for (let i=0; i<objects.length; i++) {
+            if (taskId === i+1) {
+                objects[i].title = newText;
+            }
+        }
+        console.log(newText);
         this.setState({tasks: objects});
     }
+
 
     handleCreateTask = colId => {
         const objects = this.state.tasks;
 
-        if(objects.length == 0) {
+        if(objects.length === 0) {
             objects.push({colID: colId, id: 1, title: "asd"});
         } else {
             const obj = objects[objects.length-1];
@@ -72,15 +82,19 @@ class Catalog extends React.Component {
     handleMoveTask  = taskId => {
         const objects = this.state.tasks.slice();
         for (let i=0; i<objects.length; i++) {
-            if (taskId == i+1) {
+            if (taskId === i+1) {
                 objects[i].colID = 2;
             }
         }
         this.setState({tasks: objects});
     }
+
+    handleDeleteTask = taskId => {
+        const objects = this.state.tasks.filter(item => item.id !== taskId);
+        this.setState({tasks: objects});
+    }
     
     render() {
-
         if (this.state.emptyArray == true) {
             return (
                 <div className="empty-state">
@@ -98,6 +112,7 @@ class Catalog extends React.Component {
                 onCreateTask={this.handleCreateTask}
                 onDeleteTask={this.handleDeleteTask}
                 onEdit={this.handleEditCol}
+                onEditTask={this.handleEditTask}
                 onMove={this.handleMoveTask}
                 taskArray = {this.state.tasks}
             />

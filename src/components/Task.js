@@ -1,6 +1,6 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTimesCircle, faPlusCircle } from '@fortawesome/free-solid-svg-icons'
+import { faTimesCircle, faCheck, faWrench } from '@fortawesome/free-solid-svg-icons'
 import '../assets/Task.css';
 import '../assets/Std.css';
 // tutto è ovvio ma nulla è certo
@@ -8,23 +8,57 @@ import '../assets/Std.css';
 class Task extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            editText: '',
+            setEditing: false
+        }
     }
 
-    showStuff = () => {
-        console.log(this.props.id);
-        console.log(this.props.colID);
+    handleEditMode = () => {
+        this.setState({setEditing: true});
+    }
+
+    handleChangeText = (e) => {
+        this.setState({editText: e.target.value});
+    }
+
+    handleSubmit = (e) => {
+        this.setState({setEditing: false});
+        this.props.editTask(this.props.id, this.state.editText);
+        e.preventDefault();
     }
 
     render() {
-        return (
-            <div className="task-container task-bg" onClick={this.showStuff}>
-                <h3>{this.props.title}</h3>
-                <FontAwesomeIcon icon={faTimesCircle} size="2x" onClick={() => this.props.deleteTask(this.props.id)}/>
-                <FontAwesomeIcon icon={faPlusCircle} size="2x" onClick={() => this.props.moveTask(this.props.id)}/>
-                <a> MOVE ME TO SECOND COLUMN </a>
-                <a>Show content</a>
-            </div>
-        );
+        if (this.state.setEditing) {
+            return (
+                <div className="task-container task-bg" onClick={this.showStuff}>
+                    
+                    <div className="header-title-task">
+                        <FontAwesomeIcon className="edit-task-button" icon={faCheck} size="1x" onClick={this.handleSubmit}/>
+                        <form onSubmit={this.handleSubmit} >
+                            <input className="inputTask" placeholder={this.props.title} onChange={this.handleChangeText}></input>
+                        </form>
+                        <FontAwesomeIcon className="close-task-button" icon={faTimesCircle} size="2x" onClick={() => this.props.deleteTask(this.props.id)}/>
+                    </div>
+                    <a className="show-more-link">Show content</a>
+                </div>
+            );
+
+        } else {
+            return (
+                <div className="task-container task-bg">
+                    <div className="header-title-task">
+                        <FontAwesomeIcon className="edit-task-button" icon={faWrench} size="1x" onClick={this.handleEditMode}/>
+                        <h3 className="task-title">{this.props.title}</h3>
+                        <FontAwesomeIcon className="close-task-button" icon={faTimesCircle} size="2x" onClick={() => this.props.deleteTask(this.props.id)}/>
+                    </div>
+                    <a className="show-more-link">Show content</a>
+                </div>
+            );
+        }
+
+
+
     }
 }
 

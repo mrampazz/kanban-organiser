@@ -1,5 +1,6 @@
 import React from 'react';
 import Column from './Column';
+import Modal from './Modal';
 import '../assets/Catalog.css';
 import '../assets/Std.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -10,6 +11,7 @@ class Catalog extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            displayModal: false,
             emptyArray: true,
             cols: [],
             tasks: []
@@ -93,6 +95,16 @@ class Catalog extends React.Component {
         const objects = this.state.tasks.filter(item => item.id !== taskId);
         this.setState({tasks: objects});
     }
+
+    handleShowModal = taskId => {
+        this.setState({displayModal: true});
+    }
+
+    handleKillModal = () => {
+        this.setState({displayModal: false});
+    }
+
+
     
     render() {
         if (this.state.emptyArray == true) {
@@ -115,6 +127,7 @@ class Catalog extends React.Component {
                 onEditTask={this.handleEditTask}
                 onMove={this.handleMoveTask}
                 taskArray = {this.state.tasks}
+                showModal = {this.handleShowModal}
             />
         ));
         
@@ -130,6 +143,7 @@ class Catalog extends React.Component {
                 {items}
                 </ReactCSSTransitionGroup>
                 <FontAwesomeIcon className="add-button-col" icon={faPlusCircle} size="2x" onClick={this.handleCreateCol}/>
+                { this.state.displayModal ? <Modal killModal = {this.handleKillModal} /> : null }
             </div>
         );
     }

@@ -1,4 +1,5 @@
 import React from 'react';
+import Modal from './Modal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimesCircle, faCheck, faWrench } from '@fortawesome/free-solid-svg-icons'
 import '../assets/Task.css';
@@ -10,7 +11,8 @@ class Task extends React.Component {
         super(props);
         this.state = {
             editText: '',
-            setEditing: false
+            setEditing: false,
+            modalActivities: []
         }
     }
 
@@ -28,10 +30,10 @@ class Task extends React.Component {
         e.preventDefault();
     }
 
-    render() {
+    render() {    
         if (this.state.setEditing) {
             return (
-                <div className="task-container task-bg" onClick={this.showStuff}>
+                <div className="task-container task-bg" onClick={this.props.showModal}>
                     
                     <div className="header-title-task">
                         <FontAwesomeIcon className="edit-task-button" icon={faCheck} size="1x" onClick={this.handleSubmit}/>
@@ -46,7 +48,7 @@ class Task extends React.Component {
 
         } else {
             return (
-                <div className="task-container task-bg">
+                <div className="task-container task-bg" onClick={this.props.showModal}>
                     <div className="header-title-task">
                         <FontAwesomeIcon className="edit-task-button" icon={faWrench} size="1x" onClick={this.handleEditMode}/>
                         <h3 className="task-title">{this.props.title}</h3>
@@ -63,4 +65,4 @@ class Task extends React.Component {
 }
 
 
-export default Task;
+export default Task;{}

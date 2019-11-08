@@ -46,6 +46,7 @@ class Column extends React.Component {
                 deleteTask = {this.props.onDeleteTask}
                 moveTask = {this.props.onMove}
                 editTask = {this.props.onEditTask}
+                showModal = {this.props.showModal}
             />
         ))
            

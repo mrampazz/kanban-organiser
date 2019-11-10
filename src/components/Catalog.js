@@ -81,11 +81,11 @@ class Catalog extends React.Component {
         this.setState({tasks: objects});
     }
 
-    handleMoveTask  = taskId => {
+    handleMoveTask  = (taskId, colId) => {
         const objects = this.state.tasks.slice();
         for (let i=0; i<objects.length; i++) {
             if (taskId === i+1) {
-                objects[i].colID = 2;
+                objects[i].colID = colId;
             }
         }
         this.setState({tasks: objects});
@@ -128,6 +128,7 @@ class Catalog extends React.Component {
                 onMove={this.handleMoveTask}
                 taskArray = {this.state.tasks}
                 showModal = {this.handleShowModal}
+                colArray = {this.state.cols}
             />
         ));
         

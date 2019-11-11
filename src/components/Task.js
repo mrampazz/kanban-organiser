@@ -1,8 +1,9 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTimesCircle, faCheck, faWrench } from '@fortawesome/free-solid-svg-icons'
+import { faTimesCircle, faCheck, faWrench, faEllipsisH } from '@fortawesome/free-solid-svg-icons'
 import '../assets/Task.css';
 import '../assets/Std.css';
+import Dropdown from './Dropdown';
 // tutto è ovvio ma nulla è certo
 //  onClick={this.props.showModal}
 
@@ -12,7 +13,8 @@ class Task extends React.Component {
         this.state = {
             editText: '',
             setEditing: false,
-            modalActivities: []
+            modalActivities: [],
+            isDropdownOpen: false
         }
     }
 
@@ -31,7 +33,16 @@ class Task extends React.Component {
     }
 
     handleMoveTask = (e) => {
-        this.props.moveTask(this.props.id, parseInt(e.target.textContent, 10));
+        let i = e.target.textContent.match(/(\d+)/);
+        this.props.moveTask(this.props.id, parseInt(i, 10));
+    }
+
+    handleToggleDropdown = () => {
+        if (this.state.isDropdownOpen) {
+            this.setState({isDropdownOpen: false});
+        } else {
+            this.setState({isDropdownOpen: true});
+        }
     }
 
     render() {    
@@ -44,14 +55,17 @@ class Task extends React.Component {
                 <div className="task-container task-bg" >
                     <div className="header-title-task">
                         <FontAwesomeIcon className="edit-task-button" icon={faCheck} size="1x" onClick={this.handleSubmit}/>
+                        <FontAwesomeIcon icon={faEllipsisH} onClick={this.handleToggleDropdown}/>
                         <form onSubmit={this.handleSubmit} >
                             <input className="inputTask" placeholder={this.props.title} onChange={this.handleChangeText}></input>
                         </form>
                         <FontAwesomeIcon className="close-task-button" icon={faTimesCircle} size="2x" onClick={() => this.props.deleteTask(this.props.id)}/>
                     </div>
-                    <ul>
-                        {items}
-                    </ul>
+                    <Dropdown
+                        handleMoveTask = {this.handleMoveTask}
+                        colList = {this.props.colArray}
+                        isOpen = {this.state.isDropdownOpen}
+                    />
                     <a className="show-more-link">Show content</a>
                 </div>
             );
@@ -61,12 +75,15 @@ class Task extends React.Component {
                 <div className="task-container task-bg">
                     <div className="header-title-task">
                         <FontAwesomeIcon className="edit-task-button" icon={faWrench} size="1x" onClick={this.handleEditMode}/>
+                        <FontAwesomeIcon icon={faEllipsisH} onClick={this.handleToggleDropdown}/>
                         <h3 className="task-title">{this.props.title}</h3>
                         <FontAwesomeIcon className="close-task-button" icon={faTimesCircle} size="2x" onClick={() => this.props.deleteTask(this.props.id)}/>
                     </div>
-                    <ul>
-                        {items}
-                    </ul>
+                    <Dropdown
+                        handleMoveTask = {this.handleMoveTask}
+                        colList = {this.props.colArray}
+                        isOpen = {this.state.isDropdownOpen}
+                    />
                     <a className="show-more-link">Show content</a>
                 </div>
             );

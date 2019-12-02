@@ -4,17 +4,26 @@ import './App.css';
 import './assets/Std.css';
 // importing components
 import Catalog from './components/Catalog';
+import { DragDropContext } from 'react-beautiful-dnd';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
   }
 
+  onDragEnd = () => {
+
+  }
+
   render() {
     return (
-      <div className="App">
-        <Catalog />
-      </div>
+      <DragDropContext
+        onDragEnd = {this.onDragEnd}
+      >
+        <div className="App">
+          <Catalog />
+        </div>
+      </DragDropContext>
     );
   }
 }

@@ -1,0 +1,33 @@
+.hidden {
+    opacity: 0;
+}
+
+.visible {
+    opacity: 100%;
+}
+
+.dropdown {
+    position: absolute;
+    top: 9em;
+    left: 1em;
+}
+
+.link-container {
+    list-style-type: none;
+}
+
+.list-item {
+    height: 25px;
+    width: 100px;
+    border-radius: 2px;
+    background: white;
+}
+
+.outer-link-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100px;
+    width: 100px;
+}

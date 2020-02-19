@@ -1,0 +1,60 @@
+.task-container {
+    display: flex;
+    flex-direction: column;
+    border-radius: 8px;
+    height: 80px;
+    width: 380px;
+    margin-top: 1em;
+    flex-shrink: 0;
+    justify-content: center;
+    text-align: center;
+    align-items: flex-start;
+}
+
+.edit-task-button {
+    margin-right: 0.5em;
+    margin-left: 20px;
+    transition: color .2s ease-in-out;
+    cursor: pointer;
+}
+
+.edit-task-button:hover {
+    color: #FFC857;
+}
+
+.task-title {
+    margin-left: 10px;
+    font-size: 18px;
+}
+
+.header-title-task{
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+
+.close-task-button {
+    margin-left: 245px;    
+    transition: color .2s ease-in-out;
+    cursor: pointer;
+}
+
+.close-task-button:hover {
+    color: #A30006;
+}
+
+
+.show-more-link {
+    text-align: center;
+    align-self: center;
+    padding: 8px;
+}
+
+.inputTask {
+    font-size: 18px;
+    border:none;
+    background: transparent;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+}

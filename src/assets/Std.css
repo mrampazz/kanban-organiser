@@ -1,0 +1,71 @@
+.text-color {
+    color: #16425b;
+}
+
+.content-bg1 {
+    background: #2f6690;
+}
+
+.content-bg2 {
+    background: #3a7ca5;
+}
+
+.app-bg {
+    background: #d9dcd6;
+}
+
+.header-bg-1 {
+    background: #65c9d6;
+}
+
+.header-bg-2 {
+    background: #73d2de;
+}
+
+.task-bg {
+    background: #73d2de;
+}
+
+.colRemove-enter {
+    opacity: 0.01;
+    width: 0px;
+}
+
+.colRemove-enter.colRemove-enter-active {
+    opacity: 1;
+    width: 400px;
+    transition: 700ms;
+}
+
+.colRemove-leave {
+    opacity: 1;
+    width: 400px;
+}
+
+.colRemove-leave.colRemove-leave-active {
+    opacity: 0.01;
+    width: 0px;
+    transition: 700ms;
+}
+
+.taskRemove-enter {
+    opacity: 0.01;
+    height: 0px;
+}
+
+.taskRemove-enter.taskRemove-enter-active {
+    opacity: 1;
+    height: 80px;
+    transition: 700ms;
+}
+
+.taskRemove-leave {
+    opacity: 1;
+    height: 80px;
+}
+
+.taskRemove-leave.taskRemove-leave-active {
+    opacity: 0.01;
+    height: 0px;
+    transition: 700ms;
+}

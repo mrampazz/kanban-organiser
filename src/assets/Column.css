@@ -1,0 +1,92 @@
+.column {
+    position: relative;
+    height: 800px;
+    width: 400px;
+    float: left;
+    flex-shrink: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.column-header {
+    position: fixed;
+    height: 80px;
+    width: 400px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.title {
+    margin-left: .5em;
+    float: left;
+}
+
+.button {
+    margin-right: 1.2em;
+    transition: color .2s ease-in-out;
+    cursor: pointer;
+}
+
+.button:hover {
+    color: #A30006;
+}
+
+.column-content {
+    margin-top: 80px;
+    min-height: 720px;
+    height: auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    overflow-y: visible;
+}
+
+h2 {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.add-button {
+    transition: color .2s ease-in-out;
+    cursor: pointer;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.add-button:hover {
+    color: #55D6BE;
+}
+
+.input-text {
+    background: transparent;
+    border: none;
+    font-size: 24px;
+    font-weight: bold;
+    width: 80%;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+}
+
+.edit-button {
+    margin-left: .5em;
+    font-size: 24px;
+    float: left;
+    transition: color .2s ease-in-out;
+    cursor: pointer;
+}
+
+
+.edit-button:hover {
+    color: #FFC857;
+}
+
+
+.header-title {
+    margin-left: 1em;
+    display: flex;
+    align-items: center;
+}

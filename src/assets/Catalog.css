@@ -1,0 +1,35 @@
+.catalog-container {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: nowrap;
+
+    left: 0;
+    top: 0;
+    height: auto;
+    width: auto;
+    margin-left: 5em;
+    margin-top: 5em;    
+}
+
+.add-button-col {
+    margin-left: 1em;
+    margin-right: 1em;
+    transition: color .2s ease-in-out;
+    cursor: pointer;
+}
+
+.add-button-col:hover {
+    color: #55D6BE;
+}
+
+.empty-state {
+    text-align: center;
+    width: 100%;
+    margin-top: 3em;
+    color: white;
+}
+
+.add-button-col-empty {
+    margin-top: 2em;
+}
